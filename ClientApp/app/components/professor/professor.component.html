@@ -1,0 +1,28 @@
+<h1>Professor</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+<label for="nameState">Nome</label>
+<form>
+      <input type="text" name="name" id="name" ng-model="name" aria-describedby="name" 
+        placeholder="Insira nome do professor"style="whidth:30%;margin-bottom:10px" [(ngModel)]="name">
+</form>
+
+<button (click)="Save()">Salvar</button>
+
+<p *ngIf="!professores"><em>Loading...</em></p>
+
+<table class='table' *ngIf="professores">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of professores">
+            <td>{{ item.id}}</td>
+            <td>{{ item.name }}</td>
+            <button (click)="Delete(item)" type="button" class="btn btn-danger">Excluir</button>
+        </tr>
+    </tbody>
+</table>

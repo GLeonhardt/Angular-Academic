@@ -1,0 +1,63 @@
+<h1>Estudante</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+<label for="nameStudent">Nome</label>
+<form>
+      <input type="text" name="name" id="name" ng-model="name" aria-describedby="name" 
+        placeholder="Insira nome do estudante"style="whidth:30%;margin-bottom:10px" [(ngModel)]="name">
+</form>
+
+<form>
+    <input type="text" name="address" id="address" ng-model="address" aria-describedby="address" 
+      placeholder="Insira o endereço"style="whidth:30%;margin-bottom:10px" [(ngModel)]="address">
+</form>
+
+<form>
+    <input type="text" name="email" id="email" ng-model="email" aria-describedby="email" 
+      placeholder="Insira o email"style="whidth:30%;margin-bottom:10px" [(ngModel)]="email">
+</form>
+
+<form>
+    <input type="text" name="telephone" id="telephone" ng-model="telephone" aria-describedby="telephone" 
+      placeholder="Insira o telefone"style="whidth:30%;margin-bottom:10px" [(ngModel)]="telephone">
+</form>
+
+
+
+<div class="dropdown" style="margin-top:10px" name="dropdownCity">
+    <label for="dropdownCity">Cidade</label>
+    <select #selectElem (change)="setCity(selectElem.value)" style="width:30%" class="form-control">
+        <option>Selecione uma cidade</option>
+        <option *ngFor="let fuck of cidades" [value]="fuck.id">
+            {{fuck.name}}
+        </option>
+    </select>
+</div>
+
+<button (click)="Save(id)" style="margin-top:10px">Salvar</button>
+
+<p *ngIf="!students"><em>Loading...</em></p>
+
+<table class='table' *ngIf="students">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>email</th>
+            <th>telefone</th>
+            <th>endereço</th>
+            <th>Cidade</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of students">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.telephone }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.city.name }}</td>
+            <button (click)="Delete(item)" type="button" class="btn btn-danger">Excluir</button>
+        </tr>
+    </tbody>
+</table>

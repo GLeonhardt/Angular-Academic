@@ -1,0 +1,64 @@
+<h1>Turma</h1>
+
+<form>
+    <input type="text" name="class" id="class" ng-model="class" aria-describedby="class" 
+      placeholder="Insira a sala"style="whidth:30%;margin-bottom:10px" [(ngModel)]="class">
+</form>
+
+<form>
+      <input type="number" name="day" id="day" ng-model="day" aria-describedby="day" 
+        placeholder="Insira o dia da aula"style="whidth:30%;margin-bottom:10px" [(ngModel)]="day">
+</form>
+
+<form>
+    <input type="number" name="vacancies" id="vacancies" ng-model="vacancies" aria-describedby="vacancies" 
+      placeholder="Insira o numero de vagas"style="whidth:30%;margin-bottom:10px" [(ngModel)]="vacancies">
+</form>
+
+<div class="dropdown" style="margin-top:10px" name="dropdownSubjects">
+    <label for="dropdownSubjects">Disciplina</label>
+    <select #selectElem (change)="setSubject(selectElem.value)" style="width:30%" class="form-control">
+        <option>Selecione uma disciplina</option>
+        <option *ngFor="let fuck of subjects" [value]="fuck.id">
+            {{fuck.name}}
+        </option>
+    </select>
+</div>
+
+<div class="dropdown" style="margin-top:10px" name="dropdownProfessor">
+    <label for="dropdownProfessor">Professor</label>
+    <select #selectElem2 (change)="setProfessor(selectElem2.value)" style="width:30%" class="form-control">
+        <option>Selecione um Professor</option>
+        <option *ngFor="let fucks of professores" [value]="fucks.id">
+            {{fucks.name}}
+        </option>
+    </select>
+</div>
+
+<button (click)="Save()" style="margin-top:10px">Salvar</button>
+
+<p *ngIf="!classroom"><em>Loading...</em></p>
+
+<table class='table' *ngIf="classroom">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Local</th>
+            <th>Materia</th>
+            <th>Dia</th>
+            <th>Vagas</th>
+            <th>Professor</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of classroom">
+            <td>{{ item.id}}</td>
+            <td>{{ item.classroom}}</td>
+            <td>{{ item.subject.name }}</td>
+            <td>{{ item.day }}</td>
+            <td>{{ item.vacancies }}</td>
+            <td>{{ item.professor.name }}</td>
+            <button (click)="Delete(item)" type="button" class="btn btn-danger">Excluir</button>
+        </tr>
+    </tbody>
+</table>
